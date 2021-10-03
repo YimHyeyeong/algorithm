@@ -103,3 +103,6 @@ for tc in range(1, int(input()) + 1):
     arr = [input() for _ in range(N)]
 
     print('#{} {}'.format(tc, check_code()))
+
+
+
