@@ -1,0 +1,29 @@
+
+def P(A,l,r):
+    p = A[l]
+    i,j = l,r
+    while i <= j:
+        while i <= j and A[i] <= p:
+            i += 1
+        while i <= j and A[j] >=p:
+            j -= 1
+        if i < j:
+            A[i], A[j] = A[j],A[i]
+    A[l], A[j] = A[j], A[l]
+    return j
+
+def Q(A, l, r):
+    if l<r:
+        s = P(A,l,r)
+        Q(A,l,s-1)
+        Q(A,s+1,r)
+
+
+tc = int(input())
+
+for t in range(1,tc+1):
+    N = int(input())
+    lst = list(map(int, input().split()))
+    Q(lst, 0, N-1)
+
+    print('#{} {}'.format(t,lst[N//2]))
