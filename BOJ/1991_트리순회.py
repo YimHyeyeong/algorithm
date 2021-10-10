@@ -4,9 +4,9 @@ for _ in range(N):
     a,b,c = input().split()
     tree[a] = [b,c]
 
-preorder = []
-inorder = []
-postorder = []
+preorder = [] # 전위
+inorder = [] # 중휘
+postorder = [] # 후위
 
 def func(now):
     if now == '.': return  # 없으면 리턴

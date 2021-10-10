@@ -11,7 +11,7 @@ def search(l,r,t,c):
         return
 
     elif t > A[mid]:
-        if c == 2 or c == 0:
+        if c == 2 or c == 0:   # 처음이거나 이전에 반대쪽에 있었을경우
             search(mid+1,r,t,1)
     else:
         if c == 1 or c == 0:
@@ -34,21 +34,39 @@ for t in range(1,tc+1):
 
 
 ####
-#[2] 반복
-def search(key):
-    l = 0
-    r = N-1
-    d = -1
-    while l <= r:
-        mid = (l+r) // 2
-        if key == A[mid]:
-            return 1
-        elif key < A[mid]:
-            if d == 0 : return 0 
-            r = mid -1
-            d = 0
-        else:
-            if d == 1 : return 0
-            l = mid + 1
-            d = 1
-    return 0 
+#[2]
+
+def binary_search(s,e, target):
+    flag = 0 # 'left' ,'right' 이전상태
+    while s <= e :
+        mid = (s + e) // 2
+        if A[mid] == target :
+            return True
+        elif target < A[mid] :
+            if flag == 0 : flag = 'right'
+            elif flag == 'right' : return False
+            flag = 'right'
+            e = mid - 1 # s  mid target  e   right 구간선택함
+        elif A[mid] < target :
+            if flag == 0 : flag = 'left'
+            elif flag == 'left' : return False
+            flag = 'left'
+            s = mid + 1 # s target  mid   e    left 구간선택
+
+    return False
+
+
+T = int(input())
+
+for tc in range(1, T + 1) :
+    N,M = map(int, input().split()) # N : A의 크기 , M : B 의 크기
+    A = list(map(int ,input().split()))
+    B = list(map(int ,input().split()))
+    A.sort()
+    cnt = 0
+    for i in range(len(B)):
+        target = B[i]
+        ret = binary_search(0,len(A)-1, target) # 존재하고 + 번갈아가면서 탐색되는지
+        if ret == True:
+            cnt += 1
+    print("#{} {}".format(tc, cnt))
