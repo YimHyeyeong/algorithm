@@ -13,12 +13,12 @@ tc = int(input())
 for t in range(1,tc+1):
     N,M = map(int,input().split())
     adj = [[0] * (N+1) for _ in range(N+1)]
-    visited = [0] * (N+1)
+    visited = [0] * (N+1) # 재방문 방지를 위함
     mcnt = 0
     for _ in range(M):
         x,y = map(int,input().split())
         adj[x][y] = 1
-        adj[y][x] = 1
+        adj[y][x] = 1  # 무방향 그래프
     for i in range(1, N+1):
         visited[i] = 1  # 재호출 방지
         dfs(i,1)
