@@ -8,7 +8,7 @@ for i in range(N-7):
         cnt2 = 0
         for k in range(i ,i+8):
             for q in range(j, j+8): # 8X8 범위를 B와 W로 번갈아가면서 검사
-                if (k+q) % 2 ==0:
+                if (k+q) % 2 ==0: # 행과 열을 더한 값으로 해야 됨.. 그래야 행따라 번갈아가면서 검사
                     if arr[k][q] !='W': cnt1 += 1
                     if arr[k][q] !='B': cnt2 += 1
                 else:
